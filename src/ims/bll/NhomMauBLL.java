@@ -1,0 +1,41 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ims.bll;
+
+import ims.dal.NhomMau;
+import ims.util.BaseUtil;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Quynh
+ */
+public class NhomMauBLL {
+      BaseUtil base;
+    
+   public NhomMauBLL(){
+        base = new BaseUtil(NhomMau.class);
+   }
+   
+       public NhomMau findByName(Object id) {
+        NhomMau nhommau = new NhomMau();
+        nhommau = (NhomMau) base.findByCol("nganhang", id);
+        return nhommau;
+    }
+
+    public List<NhomMau> findAll() {
+        List<NhomMau> listData = new ArrayList<>();
+        listData = base.findAll();
+        return listData;
+    }
+
+    public void deleteById(Object id) {
+        NhomMau nhommau = new NhomMau();
+        base.deleteByCol(nhommau.getIdNM().getClass().getName(), id);
+    }
+    
+}
