@@ -7,8 +7,11 @@ package ims.bll;
 
 import ims.dal.QuocTich;
 import ims.util.BaseUtil;
+import static ims.util.BaseUtil.openTransaction;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +28,7 @@ public class QuocTichBLL {
         QuocTich quoctich = new QuocTich();
         quoctich = (QuocTich) base.findByCol("tenQuocTich", idQT);
         return quoctich;
+  
     }
 
     public List<QuocTich> findAll() {

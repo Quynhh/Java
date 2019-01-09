@@ -79,7 +79,8 @@ public final class NewJFrame extends javax.swing.JFrame {
     public NewJFrame(NhanVien n) {
         initComponents();
         stateButton(true);
-       
+       txtMaNhanVien.setEditable(false);
+        txtMaNhanVien.setText(String.valueOf(n.getIdNV()+1));
         
       loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB",(n.getIdDoi().getIdTo().getIdPB().getTenPB()));
         loadCmb(CbxTo, totoBLL.findAll(), "tenTo",n.getIdDoi().getIdTo().getTenTo() );
