@@ -21,9 +21,9 @@ public class ToBLL {
         base = new BaseUtil(To.class);
    }
    
-       public To findByName(Object id) {
+       public To findByName(Object idTo) {
         To to = new To();
-        to = (To) base.findByCol("nganhang", id);
+        to = (To) base.findByCol("To", idTo);
         return to;
     }
 
@@ -33,9 +33,9 @@ public class ToBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idTo) {
         To to = new To();
-        base.deleteByCol(to.getIdTo().getClass().getName(), id);
+        base.deleteByCol(to.getIdTo().getClass().getName(), idTo);
     }
     
 }

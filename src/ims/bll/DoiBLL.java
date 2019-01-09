@@ -21,9 +21,9 @@ public class DoiBLL {
         base = new BaseUtil(Doi.class);
    }
    
-       public Doi findByName(Object id) {
+       public Doi findByName(Object idDoi) {
         Doi doi = new Doi();
-        doi = (Doi) base.findByCol("nganhang", id);
+        doi = (Doi) base.findByCol("Doi", idDoi);
         return doi;
     }
 
@@ -33,9 +33,9 @@ public class DoiBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idDoi) {
         Doi doi = new Doi();
-        base.deleteByCol(doi.getIdDoi().getClass().getName(), id);
+        base.deleteByCol(doi.getIdDoi().getClass().getName(), idDoi);
     }
     
 }

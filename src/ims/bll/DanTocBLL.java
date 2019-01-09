@@ -21,9 +21,9 @@ public class DanTocBLL {
         base = new BaseUtil(DanToc.class);
    }
    
-       public DanToc findByName(Object id) {
+       public DanToc findByName(Object idDT) {
         DanToc dantoc = new DanToc();
-        dantoc = (DanToc) base.findByCol("nganhang", id);
+        dantoc = (DanToc) base.findByCol("DanToc", idDT);
         return dantoc;
     }
 
@@ -33,8 +33,8 @@ public class DanTocBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idDT) {
         DanToc dantoc = new DanToc();
-        base.deleteByCol(dantoc.getIdDT().getClass().getName(), id);
+        base.deleteByCol(dantoc.getIdDT().getClass().getName(), idDT);
     }
 }

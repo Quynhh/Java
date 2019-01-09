@@ -21,9 +21,9 @@ public class NhomMauBLL {
         base = new BaseUtil(NhomMau.class);
    }
    
-       public NhomMau findByName(Object id) {
+       public NhomMau findByName(Object idNM) {
         NhomMau nhommau = new NhomMau();
-        nhommau = (NhomMau) base.findByCol("nganhang", id);
+        nhommau = (NhomMau) base.findByCol("NhomMau", idNM);
         return nhommau;
     }
 
@@ -33,9 +33,9 @@ public class NhomMauBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idNM) {
         NhomMau nhommau = new NhomMau();
-        base.deleteByCol(nhommau.getIdNM().getClass().getName(), id);
+        base.deleteByCol(nhommau.getIdNM().getClass().getName(), idNM);
     }
     
 }

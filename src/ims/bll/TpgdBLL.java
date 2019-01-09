@@ -21,9 +21,9 @@ public class TpgdBLL {
         base = new BaseUtil(Tpgd.class);
    }
    
-       public Tpgd findByName(Object id) {
+       public Tpgd findByName(Object idTPGD ) {
         Tpgd tpgd = new Tpgd();
-        tpgd = (Tpgd) base.findByCol("nganhang", id);
+        tpgd = (Tpgd) base.findByCol("TPGD", idTPGD );
         return tpgd;
     }
 
@@ -33,9 +33,9 @@ public class TpgdBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void  deleteById(Object idTPGD ) {
         Tpgd tpgd = new Tpgd();
-        base.deleteByCol(tpgd.getIdTPGD().getClass().getName(), id);
+        base.deleteByCol(tpgd.getIdTPGD().getClass().getName(), idTPGD );
     }
     
     

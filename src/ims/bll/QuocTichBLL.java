@@ -21,9 +21,9 @@ public class QuocTichBLL {
         base = new BaseUtil(QuocTich.class);
    }
    
-       public QuocTich findByName(Object id) {
+       public QuocTich findByName(Object idQT) {
         QuocTich quoctich = new QuocTich();
-        quoctich = (QuocTich) base.findByCol("nganhang", id);
+        quoctich = (QuocTich) base.findByCol("QuocTich", idQT);
         return quoctich;
     }
 
@@ -33,9 +33,9 @@ public class QuocTichBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idQT) {
         QuocTich quoctich = new QuocTich();
-        base.deleteByCol(quoctich.getIdQT().getClass().getName(), id);
+        base.deleteByCol(quoctich.getIdQT().getClass().getName(), idQT);
     }
     
 }

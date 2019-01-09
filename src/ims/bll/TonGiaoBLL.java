@@ -21,9 +21,9 @@ public class TonGiaoBLL {
         base = new BaseUtil(TonGiao.class);
    }
    
-       public TonGiao findByName(Object id) {
+       public TonGiao findByName(Object idTG) {
         TonGiao tongiao = new TonGiao();
-        tongiao = (TonGiao) base.findByCol("nganhang", id);
+        tongiao = (TonGiao) base.findByCol("TonGiao", idTG);
         return tongiao;
     }
 
@@ -33,9 +33,9 @@ public class TonGiaoBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idTG) {
         TonGiao tongiao = new TonGiao();
-        base.deleteByCol(tongiao.getIdTG().getClass().getName(), id);
+        base.deleteByCol(tongiao.getIdTG().getClass().getName(), idTG);
     }
     
     

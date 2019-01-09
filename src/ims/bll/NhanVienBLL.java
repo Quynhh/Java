@@ -21,9 +21,9 @@ public class NhanVienBLL {
         base = new BaseUtil(NhanVien.class);
    }
    
-       public NhanVien findByName(Object id) {
+       public NhanVien findByName(Object idNV) {
         NhanVien nhanvien = new NhanVien();
-        nhanvien = (NhanVien) base.findByCol("nganhang", id);
+        nhanvien = (NhanVien) base.findByCol("NhanVien", idNV);
         return nhanvien;
     }
 
@@ -33,9 +33,9 @@ public class NhanVienBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idNV) {
         NhanVien nhanvien = new NhanVien();
-        base.deleteByCol(nhanvien.getIdDT().getClass().getName(), id);
+        base.deleteByCol(nhanvien.getIdDT().getClass().getName(), idNV);
     }
     
 }

@@ -21,9 +21,9 @@ public class PhongBanBLL {
         base = new BaseUtil(PhongBan.class);
    }
    
-       public PhongBan findByName(Object id) {
+       public PhongBan findByName(Object idPB) {
         PhongBan phongban = new PhongBan();
-        phongban = (PhongBan) base.findByCol("nganhang", id);
+        phongban = (PhongBan) base.findByCol("PhongBan", idPB);
         return phongban;
     }
 
@@ -33,9 +33,9 @@ public class PhongBanBLL {
         return listData;
     }
 
-    public void deleteById(Object id) {
+    public void deleteById(Object idPB) {
         PhongBan phongban = new PhongBan();
-        base.deleteByCol(phongban.getIdPB().getClass().getName(), id);
+        base.deleteByCol(phongban.getIdPB().getClass().getName(), idPB);
     }
     
 }

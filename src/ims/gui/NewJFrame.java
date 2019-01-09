@@ -23,6 +23,7 @@ private static SessionFactory factory;
     /**
      * Creates new form NewJFrame
      */
+
     public NewJFrame() {
         initComponents();
     }
