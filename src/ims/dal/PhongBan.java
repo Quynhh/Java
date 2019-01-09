@@ -6,7 +6,7 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +39,7 @@ public class PhongBan implements Serializable {
     @Column(name = "TenPB")
     private String tenPB;
     @OneToMany(mappedBy = "idPB")
-    private Collection<To> toCollection;
+    private List<To> toList;
 
     public PhongBan() {
     }
@@ -65,12 +65,12 @@ public class PhongBan implements Serializable {
     }
 
     @XmlTransient
-    public Collection<To> getToCollection() {
-        return toCollection;
+    public List<To> getToList() {
+        return toList;
     }
 
-    public void setToCollection(Collection<To> toCollection) {
-        this.toCollection = toCollection;
+    public void setToList(List<To> toList) {
+        this.toList = toList;
     }
 
     @Override

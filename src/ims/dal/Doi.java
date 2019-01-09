@@ -46,7 +46,8 @@ public class Doi implements Serializable {
     @Column(name = "TenDoi")
     private String tenDoi;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDoi", fetch = FetchType.LAZY)
-    private Collection<NhanVien> nhanVienCollection;
+//    private Collection<NhanVien> nhanVienCollection;
+    private List<NhanVien> nhanVienList;
     @JoinColumn(name = "idTo", referencedColumnName = "idTo")
     @ManyToOne
     private To idTo;
@@ -75,12 +76,19 @@ public class Doi implements Serializable {
     }
 
     @XmlTransient
-    public Collection<NhanVien> getNhanVienCollection() {
-        return nhanVienCollection;
+//    public Collection<NhanVien> getNhanVienCollection() {
+//        return nhanVienCollection;
+//    }
+//
+//    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
+//        this.nhanVienCollection = nhanVienCollection;
+//    }
+        public List<NhanVien> getNhanVienList() {
+        return nhanVienList;
     }
 
-    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
-        this.nhanVienCollection = nhanVienCollection;
+    public void setNhanVienList(List<NhanVien> nhanVienList) {
+        this.nhanVienList = nhanVienList;
     }
 
     public To getIdTo() {

@@ -6,7 +6,7 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,11 +39,11 @@ public class QuocTich implements Serializable {
     @Column(name = "TenQuocTich")
     private String tenQuocTich;
     @OneToMany(mappedBy = "idQT")
-    private Collection<DanToc> danTocCollection;
+    private List<DanToc> danTocList;
     @OneToMany(mappedBy = "idQT")
-    private Collection<Tpxh> tpxhCollection;
+    private List<Tpxh> tpxhList;
     @OneToMany(mappedBy = "idQT")
-    private Collection<Tpgd> tpgdCollection;
+    private List<Tpgd> tpgdList;
 
     public QuocTich() {
     }
@@ -69,30 +69,30 @@ public class QuocTich implements Serializable {
     }
 
     @XmlTransient
-    public Collection<DanToc> getDanTocCollection() {
-        return danTocCollection;
+    public List<DanToc> getDanTocList() {
+        return danTocList;
     }
 
-    public void setDanTocCollection(Collection<DanToc> danTocCollection) {
-        this.danTocCollection = danTocCollection;
-    }
-
-    @XmlTransient
-    public Collection<Tpxh> getTpxhCollection() {
-        return tpxhCollection;
-    }
-
-    public void setTpxhCollection(Collection<Tpxh> tpxhCollection) {
-        this.tpxhCollection = tpxhCollection;
+    public void setDanTocList(List<DanToc> danTocList) {
+        this.danTocList = danTocList;
     }
 
     @XmlTransient
-    public Collection<Tpgd> getTpgdCollection() {
-        return tpgdCollection;
+    public List<Tpxh> getTpxhList() {
+        return tpxhList;
     }
 
-    public void setTpgdCollection(Collection<Tpgd> tpgdCollection) {
-        this.tpgdCollection = tpgdCollection;
+    public void setTpxhList(List<Tpxh> tpxhList) {
+        this.tpxhList = tpxhList;
+    }
+
+    @XmlTransient
+    public List<Tpgd> getTpgdList() {
+        return tpgdList;
+    }
+
+    public void setTpgdList(List<Tpgd> tpgdList) {
+        this.tpgdList = tpgdList;
     }
 
     @Override

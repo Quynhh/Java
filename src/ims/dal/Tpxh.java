@@ -6,7 +6,7 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +41,7 @@ public class Tpxh implements Serializable {
     @Column(name = "TenTPXH")
     private String tenTPXH;
     @OneToMany(mappedBy = "idTPXH")
-    private Collection<NhanVien> nhanVienCollection;
+    private List<NhanVien> nhanVienList;
     @JoinColumn(name = "idQT", referencedColumnName = "idQT")
     @ManyToOne
     private QuocTich idQT;
@@ -70,12 +70,12 @@ public class Tpxh implements Serializable {
     }
 
     @XmlTransient
-    public Collection<NhanVien> getNhanVienCollection() {
-        return nhanVienCollection;
+    public List<NhanVien> getNhanVienList() {
+        return nhanVienList;
     }
 
-    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
-        this.nhanVienCollection = nhanVienCollection;
+    public void setNhanVienList(List<NhanVien> nhanVienList) {
+        this.nhanVienList = nhanVienList;
     }
 
     public QuocTich getIdQT() {

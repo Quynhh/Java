@@ -24,6 +24,7 @@ import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -91,7 +92,7 @@ public class NewJFrame extends javax.swing.JFrame {
         loadCmb(cbxNhomMau, nhomMauBLL.findAll(), "TenNhomMau", n.getIdNM().getTenNhomMau());
     }
 
-    public void loadCmb(JComboBox cmb, List<?> data, String col, String getData) {
+    public void loadCmb(JComboBox cmb, List <?> data, String col, String getData) {
         Vector v = new Vector();
         for (int i = 0; i < data.size(); i++) {
             Object o = data.get(i);

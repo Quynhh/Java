@@ -7,6 +7,7 @@ package ims.dal;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,8 +40,8 @@ public class NhomMau implements Serializable {
     @Column(name = "TenNhomMau")
     private String tenNhomMau;
     @OneToMany(mappedBy = "idNM")
-    private Collection<NhanVien> nhanVienCollection;
-
+//    private Collection<NhanVien> nhanVienCollection;
+private List<NhanVien> nhanVienList;
     public NhomMau() {
     }
 
@@ -65,12 +66,19 @@ public class NhomMau implements Serializable {
     }
 
     @XmlTransient
-    public Collection<NhanVien> getNhanVienCollection() {
-        return nhanVienCollection;
+//    public Collection<NhanVien> getNhanVienCollection() {
+//        return nhanVienCollection;
+//    }
+//
+//    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
+//        this.nhanVienCollection = nhanVienCollection;
+//    }
+        public List<NhanVien> getNhanVienList() {
+        return nhanVienList;
     }
 
-    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
-        this.nhanVienCollection = nhanVienCollection;
+    public void setNhanVienList(List<NhanVien> nhanVienList) {
+        this.nhanVienList = nhanVienList;
     }
 
     @Override
