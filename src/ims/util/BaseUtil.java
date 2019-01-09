@@ -142,14 +142,14 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
     }
 
     @Override
-    public Boolean checkExist(String Col, Object data) {
+    public Boolean checkExist(String col, Object data) {
            Class<T> c = typeParameterClass;
         List<Object> dataList = new ArrayList<>();
 
         EntityManager entityManager = openTransaction();
         String nameEntity = getNameClass(getClassMethod());
 
-        String sql = "SELECT COUNT(o) FROM " + nameEntity + " o WHERE " + Col + "= ";
+        String sql = "SELECT COUNT(o) FROM " + nameEntity + " o WHERE " + col + "= ";
         if (data instanceof Integer) {
             sql = sql + data;
         }
