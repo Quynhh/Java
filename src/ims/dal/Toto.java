@@ -6,7 +6,7 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,13 +25,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Quynh
  */
 @Entity
-@Table(name = "To")
+@Table(name = "Toto")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "To.findAll", query = "SELECT t FROM To t")
-    , @NamedQuery(name = "To.findByIdTo", query = "SELECT t FROM To t WHERE t.idTo = :idTo")
-    , @NamedQuery(name = "To.findByTenTo", query = "SELECT t FROM To t WHERE t.tenTo = :tenTo")})
-public class To implements Serializable {
+    @NamedQuery(name = "Toto.findAll", query = "SELECT t FROM Toto t")
+    , @NamedQuery(name = "Toto.findByIdTo", query = "SELECT t FROM Toto t WHERE t.idTo = :idTo")
+    , @NamedQuery(name = "Toto.findByTenTo", query = "SELECT t FROM Toto t WHERE t.tenTo = :tenTo")})
+public class Toto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,12 +44,12 @@ public class To implements Serializable {
     @ManyToOne
     private PhongBan idPB;
     @OneToMany(mappedBy = "idTo")
-    private List<Doi> doiList;
+    private Collection<Doi> doiCollection;
 
-    public To() {
+    public Toto() {
     }
 
-    public To(Integer idTo) {
+    public Toto(Integer idTo) {
         this.idTo = idTo;
     }
 
@@ -78,12 +78,12 @@ public class To implements Serializable {
     }
 
     @XmlTransient
-    public List<Doi> getDoiList() {
-        return doiList;
+    public Collection<Doi> getDoiCollection() {
+        return doiCollection;
     }
 
-    public void setDoiList(List<Doi> doiList) {
-        this.doiList = doiList;
+    public void setDoiCollection(Collection<Doi> doiCollection) {
+        this.doiCollection = doiCollection;
     }
 
     @Override
@@ -96,10 +96,10 @@ public class To implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof To)) {
+        if (!(object instanceof Toto)) {
             return false;
         }
-        To other = (To) object;
+        Toto other = (Toto) object;
         if ((this.idTo == null && other.idTo != null) || (this.idTo != null && !this.idTo.equals(other.idTo))) {
             return false;
         }
@@ -108,7 +108,7 @@ public class To implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.To[ idTo=" + idTo + " ]";
+        return "ims.dal.Toto[ idTo=" + idTo + " ]";
     }
     
 }

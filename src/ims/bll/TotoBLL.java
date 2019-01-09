@@ -5,7 +5,7 @@
  */
 package ims.bll;
 
-import ims.dal.To;
+import ims.dal.Toto;
 import ims.util.BaseUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,28 +14,28 @@ import java.util.List;
  *
  * @author Quynh
  */
-public class ToBLL {
+public class TotoBLL {
       BaseUtil base;
     
-   public ToBLL(){
-        base = new BaseUtil(To.class);
+   public TotoBLL(){
+        base = new BaseUtil(Toto.class);
    }
    
-       public To findByName(Object idTo) {
-        To to = new To();
-        to = (To) base.findByCol("tenTo", idTo);
-        return to;
+       public Toto findByName(Object idTo) {
+        Toto toto = new Toto();
+        toto = (Toto) base.findByCol("tenTo", idTo);
+        return toto;
     }
 
-    public List<To> findAll() {
-        List<To> listData = new ArrayList<>();
+    public List<Toto> findAll() {
+        List<Toto> listData = new ArrayList<>();
         listData = base.findAll();
         return listData;
     }
 
     public void deleteById(Object idTo) {
-        To to = new To();
-        base.deleteByCol(to.getIdTo().getClass().getName(), idTo);
+        Toto toto = new Toto();
+        base.deleteByCol(toto.getIdTo().getClass().getName(), idTo);
     }
     
 }

@@ -11,7 +11,7 @@ import ims.bll.NhanVienBLL;
 import ims.bll.NhomMauBLL;
 import ims.bll.PhongBanBLL;
 import ims.bll.QuocTichBLL;
-import ims.bll.ToBLL;
+import ims.bll.TotoBLL;
 import ims.bll.TonGiaoBLL;
 import ims.bll.TpgdBLL;
 import ims.bll.TpxhBLL;
@@ -52,7 +52,7 @@ public final class NewJFrame extends javax.swing.JFrame {
     private final NhomMauBLL nhomMauBLL = new NhomMauBLL();
     private final PhongBanBLL phongBanBLL = new PhongBanBLL();
     private final QuocTichBLL quocTichBLL = new QuocTichBLL();
-    private final ToBLL toBLL = new ToBLL();
+    private final TotoBLL totoBLL = new TotoBLL();
     private final TonGiaoBLL tonGiaoBLL = new TonGiaoBLL();
     private final TpgdBLL tpgdBLL = new TpgdBLL();
     private final TpxhBLL tpxhBLL = new TpxhBLL();
@@ -65,10 +65,10 @@ public final class NewJFrame extends javax.swing.JFrame {
         stateButton(true);
        
         
-//        loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB", null);
-//        loadCmb(CbxTo, toBLL.findAll(), "tenTo", null);
-//        loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", null);
-//        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "tenQuocTich", null);
+        loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB", null);
+        loadCmb(CbxTo, totoBLL.findAll(), "tenTo", null);
+        loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", null);
+        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "tenQuocTich", null);
         loadCmb(CbxDanToc, danTocBLL.findAll(), "tenDT", null);
         loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "tenTonGiao", null);
         loadCmb(cbxTPGD, tpgdBLL.findAll(), "tenTPGD", null);
@@ -81,10 +81,10 @@ public final class NewJFrame extends javax.swing.JFrame {
         stateButton(true);
        
         
- //      loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB",(n.getIdDoi().getIdTo().getIdPB().getTenPB()));
- //       loadCmb(CbxTo, toBLL.findAll(), "tenTo",n.getIdDoi().getIdTo().getTenTo() );
-//        loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", n.getIdDoi().getTenDoi());
-//        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "tenQuocTich", n.getIdDT().getIdQT().getTenQuocTich());
+      loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB",(n.getIdDoi().getIdTo().getIdPB().getTenPB()));
+        loadCmb(CbxTo, totoBLL.findAll(), "tenTo",n.getIdDoi().getIdTo().getTenTo() );
+        loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", n.getIdDoi().getTenDoi());
+        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "tenQuocTich", n.getIdDT().getIdQT().getTenQuocTich());
         loadCmb(CbxDanToc, danTocBLL.findAll(), "tenDT", n.getIdDT().getTenDT());
         loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "tenTonGiao",n.getIdTG().getTenTonGiao());
         loadCmb(cbxTPGD, tpgdBLL.findAll(), "tenTPGD", n.getIdTPGD().getTenTPGD());

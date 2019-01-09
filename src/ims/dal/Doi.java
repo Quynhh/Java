@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.dal.To;
+import ims.dal.Toto;
 import ims.dal.NhanVien;
 import java.io.Serializable;
 import java.util.Collection;
@@ -50,7 +50,7 @@ public class Doi implements Serializable {
     private List<NhanVien> nhanVienList;
     @JoinColumn(name = "idTo", referencedColumnName = "idTo")
     @ManyToOne
-    private To idTo;
+    private Toto idTo;
 
     public Doi() {
     }
@@ -91,11 +91,11 @@ public class Doi implements Serializable {
         this.nhanVienList = nhanVienList;
     }
 
-    public To getIdTo() {
+    public Toto getIdTo() {
         return idTo;
     }
 
-    public void setIdTo(To idTo) {
+    public void setIdTo(Toto idTo) {
         this.idTo = idTo;
     }
     
