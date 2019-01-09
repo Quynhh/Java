@@ -40,7 +40,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author Quynh
  */
-public class NewJFrame extends javax.swing.JFrame {
+public final class NewJFrame extends javax.swing.JFrame {
 
     private static SessionFactory factory;
     /**
