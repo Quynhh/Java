@@ -53,6 +53,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "NhanVien.findByGhiChu", query = "SELECT n FROM NhanVien n WHERE n.ghiChu = :ghiChu")})
 public class NhanVien implements Serializable {
 
+    @Column(name = "NgaySinh")
+    private String ngaySinh;
+    @Column(name = "NgayVaoDonVi")
+    private String ngayVaoDonVi;
+    @Column(name = "NgayCapCMND")
+    private String ngayCapCMND;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -60,14 +67,8 @@ public class NhanVien implements Serializable {
     private Integer idNV;
     @Column(name = "TenNV")
     private String tenNV;
-    @Column(name = "NgaySinh")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date ngaySinh;
     @Column(name = "GioiTinh")
     private Boolean gioiTinh;
-    @Column(name = "NgayVaoDonVi")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date ngayVaoDonVi;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ChieuCao")
     private Double chieuCao;
@@ -85,9 +86,6 @@ public class NhanVien implements Serializable {
     private String email;
     @Column(name = "CMND")
     private Integer cmnd;
-    @Column(name = "NgayCapCMND")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date ngayCapCMND;
     @Column(name = "NoiCapCMND")
     private String noiCapCMND;
     @Column(name = "NoiOHienTai")
@@ -146,13 +144,6 @@ public class NhanVien implements Serializable {
         this.tenNV = tenNV;
     }
 
-    public Date getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(Date ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
 
     public Boolean getGioiTinh() {
         return gioiTinh;
@@ -162,13 +153,6 @@ public class NhanVien implements Serializable {
         this.gioiTinh = gioiTinh;
     }
 
-    public Date getNgayVaoDonVi() {
-        return ngayVaoDonVi;
-    }
-
-    public void setNgayVaoDonVi(Date ngayVaoDonVi) {
-        this.ngayVaoDonVi = ngayVaoDonVi;
-    }
 
     public Double getChieuCao() {
         return chieuCao;
@@ -234,13 +218,6 @@ public class NhanVien implements Serializable {
         this.cmnd = cmnd;
     }
 
-    public Date getNgayCapCMND() {
-        return ngayCapCMND;
-    }
-
-    public void setNgayCapCMND(Date ngayCapCMND) {
-        this.ngayCapCMND = ngayCapCMND;
-    }
 
     public String getNoiCapCMND() {
         return noiCapCMND;
@@ -379,6 +356,30 @@ public class NhanVien implements Serializable {
     @Override
     public String toString() {
         return "ims.NhanVien[ idNV=" + idNV + " ]";
+    }
+
+    public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public String getNgayVaoDonVi() {
+        return ngayVaoDonVi;
+    }
+
+    public void setNgayVaoDonVi(String ngayVaoDonVi) {
+        this.ngayVaoDonVi = ngayVaoDonVi;
+    }
+
+    public String getNgayCapCMND() {
+        return ngayCapCMND;
+    }
+
+    public void setNgayCapCMND(String ngayCapCMND) {
+        this.ngayCapCMND = ngayCapCMND;
     }
     
 }

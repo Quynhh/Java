@@ -23,7 +23,7 @@ public class NhomMauBLL {
    
        public NhomMau findByName(Object idNM) {
         NhomMau nhommau = new NhomMau();
-        nhommau = (NhomMau) base.findByCol("TenNhomMau", idNM);
+        nhommau = (NhomMau) base.findByCol("tenNhomMau", idNM);
         return nhommau;
     }
 

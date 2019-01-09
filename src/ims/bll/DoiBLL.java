@@ -23,7 +23,7 @@ public class DoiBLL {
    
        public Doi findByName(Object idDoi) {
         Doi doi = new Doi();
-        doi = (Doi) base.findByCol("TenDoi", idDoi);
+        doi = (Doi) base.findByCol("tenDoi", idDoi);
         return doi;
     }
 

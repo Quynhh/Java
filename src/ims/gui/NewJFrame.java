@@ -63,33 +63,33 @@ public final class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         stateButton(true);
-        setInfoDialog();
+       
         
-        loadCmb(CbxPhongBan, phongBanBLL.findAll(), "TenPB", null);
-        loadCmb(CbxTo, toBLL.findAll(), "TenTo", null);
-        loadCmb(CbxDoi, doiBLL.findAll(), "TenDoi", null);
-        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "TenQuocTich", null);
-        loadCmb(CbxDanToc, danTocBLL.findAll(), "TenDantoc", null);
-        loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "TenTonGiao", null);
-        loadCmb(cbxTPGD, tpgdBLL.findAll(), "TenTPGD", null);
-        loadCmb(cbxTPXH, tpxhBLL.findAll(), "TenTPXH", null);
-        loadCmb(cbxNhomMau, nhomMauBLL.findAll(), "TenNhomMau", null);
+//        loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB", null);
+//        loadCmb(CbxTo, toBLL.findAll(), "tenTo", null);
+//        loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", null);
+//        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "tenQuocTich", null);
+        loadCmb(CbxDanToc, danTocBLL.findAll(), "tenDT", null);
+        loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "tenTonGiao", null);
+        loadCmb(cbxTPGD, tpgdBLL.findAll(), "tenTPGD", null);
+        loadCmb(cbxTPXH, tpxhBLL.findAll(), "tenTPXH", null);
+        loadCmb(cbxNhomMau, nhomMauBLL.findAll(), "tenNhomMau", null);
     }
   
     public NewJFrame(NhanVien n) {
         initComponents();
         stateButton(true);
-        setInfoDialog();
+       
         
-        loadCmb(CbxPhongBan, phongBanBLL.findAll(), "TenPB",(n.getIdDoi().getIdTo().getIdPB().getTenPB()));
-        loadCmb(CbxTo, toBLL.findAll(), "TenTo",n.getIdDoi().getIdTo().getTenTo() );
-        loadCmb(CbxDoi, doiBLL.findAll(), "TenDoi", n.getIdDoi().getTenDoi());
-        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "TenQuocTich", n.getIdDT().getIdQT().getTenQuocTich());
-        loadCmb(CbxDanToc, danTocBLL.findAll(), "TenDantoc", n.getIdDT().getTenDT());
-        loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "TenTonGiao",n.getIdTG().getTenTonGiao());
-        loadCmb(cbxTPGD, tpgdBLL.findAll(), "TenTPGD", n.getIdTPGD().getTenTPGD());
-        loadCmb(cbxTPXH, tpxhBLL.findAll(), "TenTPXH",n.getIdTPXH().getTenTPXH());
-        loadCmb(cbxNhomMau, nhomMauBLL.findAll(), "TenNhomMau", n.getIdNM().getTenNhomMau());
+ //      loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB",(n.getIdDoi().getIdTo().getIdPB().getTenPB()));
+ //       loadCmb(CbxTo, toBLL.findAll(), "tenTo",n.getIdDoi().getIdTo().getTenTo() );
+//        loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", n.getIdDoi().getTenDoi());
+//        loadCmb(CbxQuocTich, quocTichBLL.findAll(), "tenQuocTich", n.getIdDT().getIdQT().getTenQuocTich());
+        loadCmb(CbxDanToc, danTocBLL.findAll(), "tenDT", n.getIdDT().getTenDT());
+        loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "tenTonGiao",n.getIdTG().getTenTonGiao());
+        loadCmb(cbxTPGD, tpgdBLL.findAll(), "tenTPGD", n.getIdTPGD().getTenTPGD());
+       loadCmb(cbxTPXH, tpxhBLL.findAll(), "tenTPXH",n.getIdTPXH().getTenTPXH());
+        loadCmb(cbxNhomMau, nhomMauBLL.findAll(), "tenNhomMau", n.getIdNM().getTenNhomMau());
     }
 
     public void loadCmb(JComboBox cmb, List <?> data, String col, String getData) {
@@ -403,11 +403,13 @@ public final class NewJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel13)
                         .addComponent(jLabel14)
-                        .addComponent(jLabel16)
                         .addComponent(jLabel18)
                         .addComponent(jLabel9)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jLabel25))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel16)
+                            .addGap(28, 28, 28)))
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNoiOHienTai)
@@ -560,16 +562,13 @@ public final class NewJFrame extends javax.swing.JFrame {
                     .addComponent(txtThuongTru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(txtNoiSinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel15))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNguyenQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNoiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNguyenQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)

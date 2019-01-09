@@ -23,7 +23,7 @@ public class TpgdBLL {
    
        public Tpgd findByName(Object idTPGD ) {
         Tpgd tpgd = new Tpgd();
-        tpgd = (Tpgd) base.findByCol("TenTPGD", idTPGD );
+        tpgd = (Tpgd) base.findByCol("tenTPGD", idTPGD );
         return tpgd;
     }
 

@@ -23,7 +23,7 @@ public class DanTocBLL {
    
        public DanToc findByName(Object idDT) {
         DanToc dantoc = new DanToc();
-        dantoc = (DanToc) base.findByCol("TenDT", idDT);
+        dantoc = (DanToc) base.findByCol("tenDT", idDT);
         return dantoc;
     }
 
