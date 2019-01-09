@@ -5,12 +5,21 @@
  */
 package ims.gui;
 
+import ims.dal.PhongBan;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 /**
  *
  * @author Quynh
  */
-public class NewJFrame extends javax.swing.JFrame {
-
+public class NewJFrame extends javax.swing.JFrame  {
+private static SessionFactory factory;
     /**
      * Creates new form NewJFrame
      */
@@ -126,7 +135,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jLabel7.setText("Tổ");
 
-        CbxPhongBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CbxPhongBan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbxPhongBanActionPerformed(evt);
+            }
+        });
 
         CbxDoi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -582,6 +595,12 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLuuActionPerformed
 
+    private void CbxPhongBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxPhongBanActionPerformed
+        // TODO add your handling code here:
+     
+        
+    }//GEN-LAST:event_CbxPhongBanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -689,4 +708,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtSDT2;
     private javax.swing.JTextField txtThuongTru;
     // End of variables declaration//GEN-END:variables
+
+   
 }

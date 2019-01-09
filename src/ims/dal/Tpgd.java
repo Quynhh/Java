@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ims;
+package ims.dal;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -25,48 +25,48 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Quynh
  */
 @Entity
-@Table(name = "DanToc")
+@Table(name = "TPGD")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DanToc.findAll", query = "SELECT d FROM DanToc d")
-    , @NamedQuery(name = "DanToc.findByIdDT", query = "SELECT d FROM DanToc d WHERE d.idDT = :idDT")
-    , @NamedQuery(name = "DanToc.findByTenDT", query = "SELECT d FROM DanToc d WHERE d.tenDT = :tenDT")})
-public class DanToc implements Serializable {
+    @NamedQuery(name = "Tpgd.findAll", query = "SELECT t FROM Tpgd t")
+    , @NamedQuery(name = "Tpgd.findByIdTPGD", query = "SELECT t FROM Tpgd t WHERE t.idTPGD = :idTPGD")
+    , @NamedQuery(name = "Tpgd.findByTenTPGD", query = "SELECT t FROM Tpgd t WHERE t.tenTPGD = :tenTPGD")})
+public class Tpgd implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idDT")
-    private Integer idDT;
-    @Column(name = "TenDT")
-    private String tenDT;
-    @OneToMany(mappedBy = "idDT")
+    @Column(name = "idTPGD")
+    private Integer idTPGD;
+    @Column(name = "TenTPGD")
+    private String tenTPGD;
+    @OneToMany(mappedBy = "idTPGD")
     private Collection<NhanVien> nhanVienCollection;
     @JoinColumn(name = "idQT", referencedColumnName = "idQT")
     @ManyToOne
     private QuocTich idQT;
 
-    public DanToc() {
+    public Tpgd() {
     }
 
-    public DanToc(Integer idDT) {
-        this.idDT = idDT;
+    public Tpgd(Integer idTPGD) {
+        this.idTPGD = idTPGD;
     }
 
-    public Integer getIdDT() {
-        return idDT;
+    public Integer getIdTPGD() {
+        return idTPGD;
     }
 
-    public void setIdDT(Integer idDT) {
-        this.idDT = idDT;
+    public void setIdTPGD(Integer idTPGD) {
+        this.idTPGD = idTPGD;
     }
 
-    public String getTenDT() {
-        return tenDT;
+    public String getTenTPGD() {
+        return tenTPGD;
     }
 
-    public void setTenDT(String tenDT) {
-        this.tenDT = tenDT;
+    public void setTenTPGD(String tenTPGD) {
+        this.tenTPGD = tenTPGD;
     }
 
     @XmlTransient
@@ -89,18 +89,18 @@ public class DanToc implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idDT != null ? idDT.hashCode() : 0);
+        hash += (idTPGD != null ? idTPGD.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DanToc)) {
+        if (!(object instanceof Tpgd)) {
             return false;
         }
-        DanToc other = (DanToc) object;
-        if ((this.idDT == null && other.idDT != null) || (this.idDT != null && !this.idDT.equals(other.idDT))) {
+        Tpgd other = (Tpgd) object;
+        if ((this.idTPGD == null && other.idTPGD != null) || (this.idTPGD != null && !this.idTPGD.equals(other.idTPGD))) {
             return false;
         }
         return true;
@@ -108,7 +108,7 @@ public class DanToc implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.DanToc[ idDT=" + idDT + " ]";
+        return "ims.Tpgd[ idTPGD=" + idTPGD + " ]";
     }
     
 }

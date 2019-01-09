@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ims;
+package ims.dal;
 
+import ims.dal.QuocTich;
+import ims.dal.NhanVien;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -25,48 +27,48 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Quynh
  */
 @Entity
-@Table(name = "TPXH")
+@Table(name = "DanToc")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tpxh.findAll", query = "SELECT t FROM Tpxh t")
-    , @NamedQuery(name = "Tpxh.findByIdTPXH", query = "SELECT t FROM Tpxh t WHERE t.idTPXH = :idTPXH")
-    , @NamedQuery(name = "Tpxh.findByTenTPXH", query = "SELECT t FROM Tpxh t WHERE t.tenTPXH = :tenTPXH")})
-public class Tpxh implements Serializable {
+    @NamedQuery(name = "DanToc.findAll", query = "SELECT d FROM DanToc d")
+    , @NamedQuery(name = "DanToc.findByIdDT", query = "SELECT d FROM DanToc d WHERE d.idDT = :idDT")
+    , @NamedQuery(name = "DanToc.findByTenDT", query = "SELECT d FROM DanToc d WHERE d.tenDT = :tenDT")})
+public class DanToc implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idTPXH")
-    private Integer idTPXH;
-    @Column(name = "TenTPXH")
-    private String tenTPXH;
-    @OneToMany(mappedBy = "idTPXH")
+    @Column(name = "idDT")
+    private Integer idDT;
+    @Column(name = "TenDT")
+    private String tenDT;
+    @OneToMany(mappedBy = "idDT")
     private Collection<NhanVien> nhanVienCollection;
     @JoinColumn(name = "idQT", referencedColumnName = "idQT")
     @ManyToOne
     private QuocTich idQT;
 
-    public Tpxh() {
+    public DanToc() {
     }
 
-    public Tpxh(Integer idTPXH) {
-        this.idTPXH = idTPXH;
+    public DanToc(Integer idDT) {
+        this.idDT = idDT;
     }
 
-    public Integer getIdTPXH() {
-        return idTPXH;
+    public Integer getIdDT() {
+        return idDT;
     }
 
-    public void setIdTPXH(Integer idTPXH) {
-        this.idTPXH = idTPXH;
+    public void setIdDT(Integer idDT) {
+        this.idDT = idDT;
     }
 
-    public String getTenTPXH() {
-        return tenTPXH;
+    public String getTenDT() {
+        return tenDT;
     }
 
-    public void setTenTPXH(String tenTPXH) {
-        this.tenTPXH = tenTPXH;
+    public void setTenDT(String tenDT) {
+        this.tenDT = tenDT;
     }
 
     @XmlTransient
@@ -89,18 +91,18 @@ public class Tpxh implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idTPXH != null ? idTPXH.hashCode() : 0);
+        hash += (idDT != null ? idDT.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tpxh)) {
+        if (!(object instanceof DanToc)) {
             return false;
         }
-        Tpxh other = (Tpxh) object;
-        if ((this.idTPXH == null && other.idTPXH != null) || (this.idTPXH != null && !this.idTPXH.equals(other.idTPXH))) {
+        DanToc other = (DanToc) object;
+        if ((this.idDT == null && other.idDT != null) || (this.idDT != null && !this.idDT.equals(other.idDT))) {
             return false;
         }
         return true;
@@ -108,7 +110,7 @@ public class Tpxh implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.Tpxh[ idTPXH=" + idTPXH + " ]";
+        return "ims.DanToc[ idDT=" + idDT + " ]";
     }
     
 }

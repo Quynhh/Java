@@ -40,6 +40,5 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="ims.NhanVien" table="NhanVien"/>
-  
+  <class name="ims.dal.NhanVien" table="NhanVien"/>
 </hibernate-mapping>

@@ -5,7 +5,7 @@
  */
 package ims.gui;
 
-import ims.NhanVien;
+import ims.dal.NhanVien;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;

@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/ims/gui/Employee.java</file>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/ims/gui/Dashboard.java</file>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/ims/NhanVien.java</file>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/ims/gui/EmployeeList.java</file>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/hibernate.cfg.xml</file>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/ims/gui/NewJFrame.java</file>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/ims/QuocTich.java</file>
-            <file>file:/D:/DeTaiJava/InventoryManagement/src/hibernate.hbm.xml</file>
+            <file>file:/D:/Java/src/ims/util/AppUtil.java</file>
+            <file>file:/D:/Java/src/ims/util/BaseUtil.java</file>
         </group>
     </open-files>
 </project-private>
