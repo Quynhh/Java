@@ -23,7 +23,7 @@ public class NhanVienBLL {
    
        public NhanVien findByName(Object idNV) {
         NhanVien nhanvien = new NhanVien();
-        nhanvien = (NhanVien) base.findByCol("NhanVien", idNV);
+        nhanvien = (NhanVien) base.findByCol("TenNV", idNV);
         return nhanvien;
     }
 

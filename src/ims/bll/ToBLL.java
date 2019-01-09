@@ -23,7 +23,7 @@ public class ToBLL {
    
        public To findByName(Object idTo) {
         To to = new To();
-        to = (To) base.findByCol("To", idTo);
+        to = (To) base.findByCol("TenTo", idTo);
         return to;
     }
 

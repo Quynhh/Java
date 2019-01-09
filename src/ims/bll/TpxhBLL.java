@@ -23,7 +23,7 @@ public class TpxhBLL {
    
        public Tpxh findByName(Object idTPXH) {
         Tpxh tpxh = new Tpxh();
-        tpxh = (Tpxh) base.findByCol("TPXH", idTPXH);
+        tpxh = (Tpxh) base.findByCol("TenTPXH", idTPXH);
         return tpxh;
     }
 

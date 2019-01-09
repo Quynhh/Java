@@ -9,9 +9,12 @@ import ims.dal.To;
 import ims.dal.NhanVien;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -42,7 +45,7 @@ public class Doi implements Serializable {
     private Integer idDoi;
     @Column(name = "TenDoi")
     private String tenDoi;
-    @OneToMany(mappedBy = "idDoi")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDoi", fetch = FetchType.LAZY)
     private Collection<NhanVien> nhanVienCollection;
     @JoinColumn(name = "idTo", referencedColumnName = "idTo")
     @ManyToOne
@@ -87,6 +90,8 @@ public class Doi implements Serializable {
     public void setIdTo(To idTo) {
         this.idTo = idTo;
     }
+    
+  
 
     @Override
     public int hashCode() {

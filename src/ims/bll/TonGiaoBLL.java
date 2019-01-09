@@ -23,7 +23,7 @@ public class TonGiaoBLL {
    
        public TonGiao findByName(Object idTG) {
         TonGiao tongiao = new TonGiao();
-        tongiao = (TonGiao) base.findByCol("TonGiao", idTG);
+        tongiao = (TonGiao) base.findByCol("TenTonGiao", idTG);
         return tongiao;
     }
 

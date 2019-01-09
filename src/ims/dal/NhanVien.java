@@ -353,6 +353,8 @@ public class NhanVien implements Serializable {
     public void setIdTPXH(Tpxh idTPXH) {
         this.idTPXH = idTPXH;
     }
+    
+    
 
     @Override
     public int hashCode() {

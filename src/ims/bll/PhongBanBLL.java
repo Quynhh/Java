@@ -23,7 +23,7 @@ public class PhongBanBLL {
    
        public PhongBan findByName(Object idPB) {
         PhongBan phongban = new PhongBan();
-        phongban = (PhongBan) base.findByCol("PhongBan", idPB);
+        phongban = (PhongBan) base.findByCol("TenPB", idPB);
         return phongban;
     }
 

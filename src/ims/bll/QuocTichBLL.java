@@ -23,7 +23,7 @@ public class QuocTichBLL {
    
        public QuocTich findByName(Object idQT) {
         QuocTich quoctich = new QuocTich();
-        quoctich = (QuocTich) base.findByCol("QuocTich", idQT);
+        quoctich = (QuocTich) base.findByCol("TenQuocTich", idQT);
         return quoctich;
     }
 
