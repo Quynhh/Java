@@ -30,6 +30,8 @@ public class QuocTichBLL {
         return quoctich;
   
     }
+       
+
 
     public List<QuocTich> findAll() {
         List<QuocTich> listData = new ArrayList<>();

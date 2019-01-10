@@ -6,7 +6,7 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,11 +39,11 @@ public class QuocTich implements Serializable {
     @Column(name = "TenQuocTich")
     private String tenQuocTich;
     @OneToMany(mappedBy = "idQT")
-    private List<DanToc> danTocList;
+    private Collection<DanToc> danTocCollection;
     @OneToMany(mappedBy = "idQT")
-    private List<Tpxh> tpxhList;
+    private Collection<Tpxh> tpxhCollection;
     @OneToMany(mappedBy = "idQT")
-    private List<Tpgd> tpgdList;
+    private Collection<Tpgd> tpgdCollection;
 
     public QuocTich() {
     }
@@ -69,30 +69,30 @@ public class QuocTich implements Serializable {
     }
 
     @XmlTransient
-    public List<DanToc> getDanTocList() {
-        return danTocList;
+    public Collection<DanToc> getDanTocCollection() {
+        return danTocCollection;
     }
 
-    public void setDanTocList(List<DanToc> danTocList) {
-        this.danTocList = danTocList;
-    }
-
-    @XmlTransient
-    public List<Tpxh> getTpxhList() {
-        return tpxhList;
-    }
-
-    public void setTpxhList(List<Tpxh> tpxhList) {
-        this.tpxhList = tpxhList;
+    public void setDanTocCollection(Collection<DanToc> danTocCollection) {
+        this.danTocCollection = danTocCollection;
     }
 
     @XmlTransient
-    public List<Tpgd> getTpgdList() {
-        return tpgdList;
+    public Collection<Tpxh> getTpxhCollection() {
+        return tpxhCollection;
     }
 
-    public void setTpgdList(List<Tpgd> tpgdList) {
-        this.tpgdList = tpgdList;
+    public void setTpxhCollection(Collection<Tpxh> tpxhCollection) {
+        this.tpxhCollection = tpxhCollection;
+    }
+
+    @XmlTransient
+    public Collection<Tpgd> getTpgdCollection() {
+        return tpgdCollection;
+    }
+
+    public void setTpgdCollection(Collection<Tpgd> tpgdCollection) {
+        this.tpgdCollection = tpgdCollection;
     }
 
     @Override
@@ -117,7 +117,7 @@ public class QuocTich implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.QuocTich[ idQT=" + idQT + " ]";
+        return "ims.dal.QuocTich[ idQT=" + idQT + " ]";
     }
     
 }

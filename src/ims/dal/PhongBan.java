@@ -7,7 +7,6 @@ package ims.dal;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "PhongBan.findByTenPB", query = "SELECT p FROM PhongBan p WHERE p.tenPB = :tenPB")})
 public class PhongBan implements Serializable {
 
-    @OneToMany(mappedBy = "idPB")
-    private Collection<Toto> totoCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -43,7 +39,7 @@ public class PhongBan implements Serializable {
     @Column(name = "TenPB")
     private String tenPB;
     @OneToMany(mappedBy = "idPB")
-    private List<Toto> toList;
+    private Collection<Toto> totoCollection;
 
     public PhongBan() {
     }
@@ -69,12 +65,12 @@ public class PhongBan implements Serializable {
     }
 
     @XmlTransient
-    public List<Toto> getToList() {
-        return toList;
+    public Collection<Toto> getTotoCollection() {
+        return totoCollection;
     }
 
-    public void setToList(List<Toto> toList) {
-        this.toList = toList;
+    public void setTotoCollection(Collection<Toto> totoCollection) {
+        this.totoCollection = totoCollection;
     }
 
     @Override
@@ -99,16 +95,7 @@ public class PhongBan implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.PhongBan[ idPB=" + idPB + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Toto> getTotoCollection() {
-        return totoCollection;
-    }
-
-    public void setTotoCollection(Collection<Toto> totoCollection) {
-        this.totoCollection = totoCollection;
+        return "ims.dal.PhongBan[ idPB=" + idPB + " ]";
     }
     
 }

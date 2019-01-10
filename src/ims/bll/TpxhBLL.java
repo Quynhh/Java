@@ -26,6 +26,12 @@ public class TpxhBLL {
         tpxh = (Tpxh) base.findByCol("tenTPXH", idTPXH);
         return tpxh;
     }
+       
+             public Tpxh findtpxh(Object tenTPXH) {
+        Tpxh tpxh = new Tpxh();
+        tpxh = (Tpxh) base.findTPXH("tenTPXH", tenTPXH);
+        return tpxh;
+    }
 
     public List<Tpxh> findAll() {
         List<Tpxh> listData = new ArrayList<>();

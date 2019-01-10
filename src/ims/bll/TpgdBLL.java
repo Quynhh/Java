@@ -26,6 +26,12 @@ public class TpgdBLL {
         tpgd = (Tpgd) base.findByCol("tenTPGD", idTPGD );
         return tpgd;
     }
+       
+              public Tpgd findtpgd(Object tenTPGD ) {
+        Tpgd tpgd = new Tpgd();
+        tpgd = (Tpgd) base.findTPGD("tenTPGD", tenTPGD );
+        return tpgd;
+    }
 
     public List<Tpgd> findAll() {
         List<Tpgd> listData = new ArrayList<>();

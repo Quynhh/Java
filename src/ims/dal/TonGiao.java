@@ -6,7 +6,7 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +39,7 @@ public class TonGiao implements Serializable {
     @Column(name = "TenTonGiao")
     private String tenTonGiao;
     @OneToMany(mappedBy = "idTG")
-    private List<NhanVien> nhanVienList;
+    private Collection<NhanVien> nhanVienCollection;
 
     public TonGiao() {
     }
@@ -65,12 +65,12 @@ public class TonGiao implements Serializable {
     }
 
     @XmlTransient
-    public List<NhanVien> getNhanVienList() {
-        return nhanVienList;
+    public Collection<NhanVien> getNhanVienCollection() {
+        return nhanVienCollection;
     }
 
-    public void setNhanVienList(List<NhanVien> nhanVienList) {
-        this.nhanVienList = nhanVienList;
+    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
+        this.nhanVienCollection = nhanVienCollection;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class TonGiao implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.TonGiao[ idTG=" + idTG + " ]";
+        return "ims.dal.TonGiao[ idTG=" + idTG + " ]";
     }
     
 }

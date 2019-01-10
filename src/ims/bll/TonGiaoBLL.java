@@ -26,6 +26,12 @@ public class TonGiaoBLL {
         tongiao = (TonGiao) base.findByCol("tenTonGiao", idTG);
         return tongiao;
     }
+       
+              public TonGiao findTonGiao(Object tenTonGiao) {
+        TonGiao tongiao = new TonGiao();
+        tongiao = (TonGiao) base.findTonGiao("tenTonGiao", tenTonGiao);
+        return tongiao;
+    }
 
     public List<TonGiao> findAll() {
         List<TonGiao> listData = new ArrayList<>();

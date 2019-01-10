@@ -20,15 +20,14 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
 
     final Class<T> typeParameterClass;
     static final String NAMEPERSISTENCE = "InventoryManagementPU";
-    
-     /**
+
+    /**
      * Open connect entity manager.
      *
      * @param namePersistence
      * @return
      */
-    
-        public static EntityManager openTransaction() {
+    public static EntityManager openTransaction() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(NAMEPERSISTENCE);
         EntityManager entityManager = factory.createEntityManager();
 
@@ -38,8 +37,8 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
     public BaseUtil(Class<T> typeParameterClass) {
         this.typeParameterClass = typeParameterClass;
     }
-    
-        public String getNameClass(Object o) {
+
+    public String getNameClass(Object o) {
         String nameEntity = o.toString().substring(o.toString().lastIndexOf(".") + 1, o.toString().length());
         return nameEntity;
     }
@@ -48,10 +47,10 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         Class<T> c = typeParameterClass;
         return c;
     }
-            
+
     @Override
     public Object findByCol(Object col, Object data) {
-               EntityManager entityManager = openTransaction();
+        EntityManager entityManager = openTransaction();
         entityManager.getTransaction().begin();
         String nameEntity = getNameClass(getClassMethod());
         System.out.println("NAME ENTITY SELECT: " + nameEntity);
@@ -67,12 +66,84 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
 
         Query query = entityManager.createQuery(sql);
 
-        return (Object) query.getSingleResult();  
+        return (Object) query.getSingleResult();
     }
 
+    public Object findDoi(Object col, Object data) {
+        EntityManager entityManager = openTransaction();
+        entityManager.getTransaction().begin();
+        String nameEntity = getNameClass(getClassMethod());
+        System.out.println("NAME ENTITY SELECT: " + nameEntity);
+        String sql = "SELECT idDoi.Doi FROM Doi, NhanVien WHERE TenDoi = 'o' and Doi.idDoi = NhanVien.idDoi";
+
+        Query query = entityManager.createQuery(sql);
+
+        return (Object) query.getSingleResult();
+    }
+
+    public Object findDanToc(Object col, Object data) {
+        EntityManager entityManager = openTransaction();
+        entityManager.getTransaction().begin();
+        String nameEntity = getNameClass(getClassMethod());
+        System.out.println("NAME ENTITY SELECT: " + nameEntity);
+        String sql = "SELECT idDT.DanToc FROM DanToc, NhanVien WHERE TenDT = 'o' and DanToc.idDT = NhanVien.idDT";
+
+        Query query = entityManager.createQuery(sql);
+
+        return (Object) query.getSingleResult();
+    }
+
+    public Object findNhomMau(Object col, Object data) {
+        EntityManager entityManager = openTransaction();
+        entityManager.getTransaction().begin();
+        String nameEntity = getNameClass(getClassMethod());
+        System.out.println("NAME ENTITY SELECT: " + nameEntity);
+        String sql = "SELECT idNM.NhomMau FROM NhomMau, NhanVien WHERE TenNhomMau = 'o' and NhomMau.idNM = NhanVien.idNM";
+
+        Query query = entityManager.createQuery(sql);
+
+        return (Object) query.getSingleResult();
+    }
+
+    public Object findTonGiao(Object col, Object data) {
+        EntityManager entityManager = openTransaction();
+        entityManager.getTransaction().begin();
+        String nameEntity = getNameClass(getClassMethod());
+        System.out.println("NAME ENTITY SELECT: " + nameEntity);
+        String sql = "SELECT idTG.TonGiao FROM TonGiao, NhanVien WHERE TenTonGiao = 'o' and TonGiao.idTG = NhanVien.idTG";
+
+        Query query = entityManager.createQuery(sql);
+
+        return (Object) query.getSingleResult();
+    }
+
+    public Object findTPGD(Object col, Object data) {
+        EntityManager entityManager = openTransaction();
+        entityManager.getTransaction().begin();
+        String nameEntity = getNameClass(getClassMethod());
+        System.out.println("NAME ENTITY SELECT: " + nameEntity);
+        String sql = "SELECT idTPGD.TPGD FROM TPGD, NhanVien WHERE TenTPGD = 'o' and TPGD.idTPGD = NhanVien.idTPGD";
+
+        Query query = entityManager.createQuery(sql);
+
+        return (Object) query.getSingleResult();
+    }
+
+        public Object findTPXH(Object col, Object data) {
+        EntityManager entityManager = openTransaction();
+        entityManager.getTransaction().begin();
+        String nameEntity = getNameClass(getClassMethod());
+        System.out.println("NAME ENTITY SELECT: " + nameEntity);
+        String sql = "SELECT idTPXH.TPXH FROM TPXH, NhanVien WHERE TenTPXH = 'o' and TPXH.idTPXH = NhanVien.idTPXH";
+
+        Query query = entityManager.createQuery(sql);
+
+        return (Object) query.getSingleResult();
+    }
+        
     @Override
     public void save(Object entity) {
-       Class<?> c = (Class<Object>) typeParameterClass;
+        Class<?> c = (Class<Object>) typeParameterClass;
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory(NAMEPERSISTENCE);
         EntityManager entityManager = openTransaction();
@@ -86,7 +157,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
 
     @Override
     public void update(Object entity) {
-           Class<?> c = (Class<Object>) typeParameterClass;
+        Class<?> c = (Class<Object>) typeParameterClass;
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory(NAMEPERSISTEsNCE);
         EntityManager entityManager = openTransaction();
@@ -100,7 +171,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
 
     @Override
     public void deleteByCol(String col, Object data) {
-       Class<?> c = (Class<Object>) typeParameterClass;
+        Class<?> c = (Class<Object>) typeParameterClass;
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory(NAMEPERSISTENCE);
         EntityManager entityManager = openTransaction();
@@ -118,12 +189,12 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         }
 
         Query query = entityManager.createQuery(sql);
-        query.executeUpdate();  
+        query.executeUpdate();
     }
 
     @Override
     public List<Object> findAll() {
-     Class<T> c = typeParameterClass;
+        Class<T> c = typeParameterClass;
         List<Object> dataList = new ArrayList<>();
 
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory(NAMEPERSISTENCE);
@@ -143,7 +214,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
 
     @Override
     public Boolean checkExist(String col, Object data) {
-           Class<T> c = typeParameterClass;
+        Class<T> c = typeParameterClass;
         List<Object> dataList = new ArrayList<>();
 
         EntityManager entityManager = openTransaction();
@@ -158,12 +229,12 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         }
 
         Query query = entityManager.createQuery(sql);
-        long result =(Long) query.getSingleResult();
+        long result = (Long) query.getSingleResult();
         if (result == 0) {
             return false;
         } else {
             return true;
         }
     }
-    
+
 }

@@ -9,6 +9,7 @@ import ims.dal.Doi;
 import ims.util.BaseUtil;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,11 @@ public class DoiBLL {
         return doi;
     }
 
+       public Doi findByDoi(Object tenDoi){
+           Doi doi = new Doi();
+        doi = (Doi) base.findDoi("tenDoi", tenDoi);
+        return doi;
+       }
     public List<Doi> findAll() {
         List<Doi> listData = new ArrayList<>();
         listData = base.findAll();

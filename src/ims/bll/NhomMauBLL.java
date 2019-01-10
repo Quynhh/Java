@@ -26,6 +26,12 @@ public class NhomMauBLL {
         nhommau = (NhomMau) base.findByCol("tenNhomMau", idNM);
         return nhommau;
     }
+       
+            public NhomMau findNM(Object tenNhomMau) {
+        NhomMau nhommau = new NhomMau();
+        nhommau = (NhomMau) base.findNhomMau("tenNhomMau", tenNhomMau);
+        return nhommau;
+    }
 
     public List<NhomMau> findAll() {
         List<NhomMau> listData = new ArrayList<>();

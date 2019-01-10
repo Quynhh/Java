@@ -15,8 +15,10 @@ import ims.bll.TotoBLL;
 import ims.bll.TonGiaoBLL;
 import ims.bll.TpgdBLL;
 import ims.bll.TpxhBLL;
+import ims.dal.*;
 import ims.dal.NhanVien;
 import ims.dal.PhongBan;
+import ims.util.BaseUtil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
@@ -31,6 +33,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import net.sf.ehcache.hibernate.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,7 +44,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author Quynh
  */
-public final class NewJFrame extends javax.swing.JFrame {
+public final class NewJFrame extends javax.swing.JFrame implements WindowListener{
 
     private static SessionFactory factory;
     /**
@@ -63,8 +67,7 @@ public final class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         stateButton(true);
-       
-        
+
         loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB", null);
         loadCmb(CbxTo, totoBLL.findAll(), "tenTo", null);
         loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", null);
@@ -75,25 +78,27 @@ public final class NewJFrame extends javax.swing.JFrame {
         loadCmb(cbxTPXH, tpxhBLL.findAll(), "tenTPXH", null);
         loadCmb(cbxNhomMau, nhomMauBLL.findAll(), "tenNhomMau", null);
     }
-  
+    
+    
+
     public NewJFrame(NhanVien n) {
         initComponents();
         stateButton(true);
-       txtMaNhanVien.setEditable(false);
-        txtMaNhanVien.setText(String.valueOf(n.getIdNV()+1));
         
-      loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB",(n.getIdDoi().getIdTo().getIdPB().getTenPB()));
-        loadCmb(CbxTo, totoBLL.findAll(), "tenTo",n.getIdDoi().getIdTo().getTenTo() );
+        txtMaNhanVien.setText(String.valueOf(n.getIdNV() + 1));
+
+        loadCmb(CbxPhongBan, phongBanBLL.findAll(), "tenPB", (n.getIdDoi().getIdTo().getIdPB().getTenPB()));
+        loadCmb(CbxTo, totoBLL.findAll(), "tenTo", n.getIdDoi().getIdTo().getTenTo());
         loadCmb(CbxDoi, doiBLL.findAll(), "tenDoi", n.getIdDoi().getTenDoi());
         loadCmb(CbxQuocTich, quocTichBLL.findAll(), "tenQuocTich", n.getIdDT().getIdQT().getTenQuocTich());
         loadCmb(CbxDanToc, danTocBLL.findAll(), "tenDT", n.getIdDT().getTenDT());
-        loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "tenTonGiao",n.getIdTG().getTenTonGiao());
+        loadCmb(CbxTonGiao, tonGiaoBLL.findAll(), "tenTonGiao", n.getIdTG().getTenTonGiao());
         loadCmb(cbxTPGD, tpgdBLL.findAll(), "tenTPGD", n.getIdTPGD().getTenTPGD());
-       loadCmb(cbxTPXH, tpxhBLL.findAll(), "tenTPXH",n.getIdTPXH().getTenTPXH());
+        loadCmb(cbxTPXH, tpxhBLL.findAll(), "tenTPXH", n.getIdTPXH().getTenTPXH());
         loadCmb(cbxNhomMau, nhomMauBLL.findAll(), "tenNhomMau", n.getIdNM().getTenNhomMau());
     }
 
-    public void loadCmb(JComboBox cmb, List <?> data, String col, String getData) {
+    public void loadCmb(JComboBox cmb, List<?> data, String col, String getData) {
         Vector v = new Vector();
         for (int i = 0; i < data.size(); i++) {
             Object o = data.get(i);
@@ -147,7 +152,7 @@ public final class NewJFrame extends javax.swing.JFrame {
         txtHoTen = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Cbxgioitinh = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -226,10 +231,10 @@ public final class NewJFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Giới Tính");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        Cbxgioitinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        Cbxgioitinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                CbxgioitinhActionPerformed(evt);
             }
         });
 
@@ -379,7 +384,7 @@ public final class NewJFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(DCNgayVaoDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cbxgioitinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -538,7 +543,7 @@ public final class NewJFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(6, 6, 6)
                             .addComponent(jLabel4))
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Cbxgioitinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
@@ -655,9 +660,9 @@ public final class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHoTenActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void CbxgioitinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxgioitinhActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_CbxgioitinhActionPerformed
 
     private void txtNguyenQuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNguyenQuanActionPerformed
         // TODO add your handling code here:
@@ -681,6 +686,87 @@ public final class NewJFrame extends javax.swing.JFrame {
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         // TODO add your handling code here:
+int id = Integer.parseInt(txtMaNhanVien.getText());
+String ten = txtHoTen.getText();
+String ngaysinh = DCNgayVaoDV.getDate().toString();
+String ngayvaodv =DCNgaySinh.getDate().toString();
+String PB = (String) CbxPhongBan.getSelectedItem().toString();
+String Doi = (String)CbxDoi.getSelectedItem().toString();
+String To = (String)CbxTo.getSelectedItem().toString();
+String gtinh = (String) Cbxgioitinh.getSelectedItem().toString();
+String qtich = (String) CbxQuocTich.getSelectedItem().toString();
+String dtoc = (String)CbxDanToc.getSelectedItem().toString();
+String tgiao = (String)CbxTonGiao.getSelectedItem().toString();
+String hnhan = (String)CbxHonNhan.getSelectedItem().toString();
+String noht = txtNoiOHienTai.getText();
+String thtru = txtThuongTru.getText();
+String nsinh = txtNoiSinh.getText();
+String ngquan = txtNguyenQuan.getText();
+String soCMND = txtCMND.getText();
+String noicapCMND = txtNoiCapCMND.getText();
+String ngaycapCMND = txtNgayCapCMND.getDate().toString();
+String tpgd1 = (String) cbxTPGD.getSelectedItem().toString();
+String tpxh1 = (String) cbxTPXH.getSelectedItem().toString(); 
+String nhdang = txtNhanDang.getText();
+String nhmau = (String)cbxNhomMau.getSelectedItem().toString();
+String loaisk = (String)cbxLoaiSK.getSelectedItem().toString();
+String benhli = (String)cbxBenhLi.getSelectedItem().toString(); 
+String canang = txtCanNang.getText();
+String chieucao = txtChieuCao.getText();
+String email = txtEmail.getText();
+String sdt1 =txtSDT1.getText();
+String sdt2 =txtSDT2.getText();
+String ghichu = txtGhiChu.getText();
+
+
+DanToc dantoc = danTocBLL.finddantoc(dtoc);
+Doi doi = doiBLL.findByDoi(Doi);
+NhomMau nhommau = nhomMauBLL.findNM(nhmau);
+PhongBan phongban = phongBanBLL.findByName(PB);
+QuocTich quoctich = quocTichBLL.findByName(qtich);
+TonGiao tongiao =tonGiaoBLL.findTonGiao(tgiao);
+Toto toto = totoBLL.findByName(To);
+Tpgd tpgd = tpgdBLL.findtpgd(tpgd1);
+Tpxh tpxh = tpxhBLL.findtpxh(tpxh1);
+
+NhanVien nhanvien = new NhanVien();
+nhanvien.setIdNV(id);
+nhanvien.setBenhLi(benhli);
+nhanvien.setCanNang(canang);
+nhanvien.setChieuCao(chieucao);
+nhanvien.setCmnd(soCMND);
+nhanvien.setDt(sdt1);
+nhanvien.setDtdd(sdt2);
+nhanvien.setEmail(email);
+nhanvien.setGhiChu(ghichu);
+nhanvien.setGioiTinh(gtinh);
+nhanvien.setIdDT(dantoc);
+nhanvien.setIdDoi(doi);
+nhanvien.setLoaiSucKhoe(loaisk);
+nhanvien.setNgayCapCMND(ngaycapCMND);
+nhanvien.setNgayCapCMND(ngaycapCMND);
+nhanvien.setNgaySinh(ngaysinh);
+nhanvien.setNgayVaoDonVi(ngayvaodv);
+nhanvien.setNguyenQuan(ngquan);
+nhanvien.setNhanDang(nhdang);
+nhanvien.setNoiCapCMND(noicapCMND);
+nhanvien.setNoiOHienTai(noht);
+nhanvien.setNoiSinh(nsinh);
+nhanvien.setTenNV(ten);
+nhanvien.setThuongTru(thtru);
+nhanvien.setTinhTrangHonNhan(hnhan);
+nhanvien.setIdNM(nhommau);
+nhanvien.setIdTG(tongiao);
+nhanvien.setIdTPGD(tpgd);
+nhanvien.setIdTPXH(tpxh);
+
+
+
+nhanVienBLL.newNhanVien(nhanvien);
+
+
+
+
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void CbxPhongBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxPhongBanActionPerformed
@@ -733,6 +819,7 @@ public final class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CbxQuocTich;
     private javax.swing.JComboBox<String> CbxTo;
     private javax.swing.JComboBox<String> CbxTonGiao;
+    private javax.swing.JComboBox<String> Cbxgioitinh;
     private com.toedter.calendar.JDateChooser DCNgaySinh;
     private com.toedter.calendar.JDateChooser DCNgayVaoDV;
     private javax.swing.JButton btnIn;
@@ -746,7 +833,6 @@ public final class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxNhomMau;
     private javax.swing.JComboBox<String> cbxTPGD;
     private javax.swing.JComboBox<String> cbxTPXH;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -796,5 +882,50 @@ public final class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtSDT2;
     private javax.swing.JTextField txtThuongTru;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void windowOpened(WindowEvent e) {    
+        txtMaNhanVien.setEditable(false);
+        Session session = factory.openSession();
+        Transaction tx = null; int row = 0;
+        try {
+            factory = new Configuration().configure().buildSessionFactory();
+            tx = session.beginTransaction();
+            List emps = session.createQuery("FROM NhanVien").list();
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx != null)    tx.rollback();         
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
 
 }

@@ -26,6 +26,11 @@ public class DanTocBLL {
         dantoc = (DanToc) base.findByCol("tenDT", idDT);
         return dantoc;
     }
+         public DanToc finddantoc(Object tenDT) {
+        DanToc dantoc = new DanToc();
+        dantoc = (DanToc) base.findDanToc("tenDT", tenDT);
+        return dantoc;
+    }
 
     public List<DanToc> findAll() {
         List<DanToc> listData = new ArrayList<>();

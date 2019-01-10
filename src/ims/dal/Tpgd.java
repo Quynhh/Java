@@ -6,7 +6,7 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +41,7 @@ public class Tpgd implements Serializable {
     @Column(name = "TenTPGD")
     private String tenTPGD;
     @OneToMany(mappedBy = "idTPGD")
-    private List<NhanVien> nhanVienList;
+    private Collection<NhanVien> nhanVienCollection;
     @JoinColumn(name = "idQT", referencedColumnName = "idQT")
     @ManyToOne
     private QuocTich idQT;
@@ -70,12 +70,12 @@ public class Tpgd implements Serializable {
     }
 
     @XmlTransient
-    public List<NhanVien> getNhanVienList() {
-        return nhanVienList;
+    public Collection<NhanVien> getNhanVienCollection() {
+        return nhanVienCollection;
     }
 
-    public void setNhanVienList(List<NhanVien> nhanVienList) {
-        this.nhanVienList = nhanVienList;
+    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
+        this.nhanVienCollection = nhanVienCollection;
     }
 
     public QuocTich getIdQT() {
@@ -108,7 +108,7 @@ public class Tpgd implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.Tpgd[ idTPGD=" + idTPGD + " ]";
+        return "ims.dal.Tpgd[ idTPGD=" + idTPGD + " ]";
     }
     
 }

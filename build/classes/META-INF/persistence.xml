@@ -9,10 +9,10 @@
     <class>ims.dal.TonGiao</class>
     <class>ims.dal.Tpgd</class>
     <class>ims.dal.PhongBan</class>
-    <class>ims.dal.NhanVien</class>
     <class>ims.dal.Doi</class>
     <class>ims.dal.DanToc</class>
     <class>ims.dal.Toto</class>
+    <class>ims.dal.NhanVien</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost\MSSQLSERVER:1433;databaseName=JAVA"/>
       <property name="javax.persistence.jdbc.user" value="sa"/>

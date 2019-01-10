@@ -31,10 +31,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Sysdiagrams.findByVersion", query = "SELECT s FROM Sysdiagrams s WHERE s.version = :version")})
 public class Sysdiagrams implements Serializable {
 
-    @Lob
-    @Column(name = "definition")
-    private byte[] definition;
-
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "name")
@@ -48,6 +44,9 @@ public class Sysdiagrams implements Serializable {
     private Integer diagramId;
     @Column(name = "version")
     private Integer version;
+    @Lob
+    @Column(name = "definition")
+    private byte[] definition;
 
     public Sysdiagrams() {
     }
@@ -94,6 +93,13 @@ public class Sysdiagrams implements Serializable {
         this.version = version;
     }
 
+    public byte[] getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(byte[] definition) {
+        this.definition = definition;
+    }
 
     @Override
     public int hashCode() {
@@ -117,15 +123,7 @@ public class Sysdiagrams implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.Sysdiagrams[ diagramId=" + diagramId + " ]";
-    }
-
-    public byte[] getDefinition() {
-        return definition;
-    }
-
-    public void setDefinition(byte[] definition) {
-        this.definition = definition;
+        return "ims.dal.Sysdiagrams[ diagramId=" + diagramId + " ]";
     }
     
 }

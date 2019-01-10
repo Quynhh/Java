@@ -5,11 +5,8 @@
  */
 package ims.dal;
 
-import ims.dal.QuocTich;
-import ims.dal.NhanVien;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,8 +41,7 @@ public class DanToc implements Serializable {
     @Column(name = "TenDT")
     private String tenDT;
     @OneToMany(mappedBy = "idDT")
-    //private Collection<NhanVien> nhanVienCollection;
-    private List<NhanVien> nhanVienList;
+    private Collection<NhanVien> nhanVienCollection;
     @JoinColumn(name = "idQT", referencedColumnName = "idQT")
     @ManyToOne
     private QuocTich idQT;
@@ -74,19 +70,12 @@ public class DanToc implements Serializable {
     }
 
     @XmlTransient
-    /*public Collection<NhanVien> getNhanVienCollection() {
+    public Collection<NhanVien> getNhanVienCollection() {
         return nhanVienCollection;
     }
 
     public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
         this.nhanVienCollection = nhanVienCollection;
-    }*/
-    public List<NhanVien> getNhanVienList() {
-        return nhanVienList;
-    }
-
-    public void setNhanVienList(List<NhanVien> nhanVienList) {
-        this.nhanVienList = nhanVienList;
     }
 
     public QuocTich getIdQT() {
@@ -119,7 +108,7 @@ public class DanToc implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.DanToc[ idDT=" + idDT + " ]";
+        return "ims.dal.DanToc[ idDT=" + idDT + " ]";
     }
     
 }

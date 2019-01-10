@@ -6,7 +6,6 @@
 package ims.dal;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -53,12 +50,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "NhanVien.findByGhiChu", query = "SELECT n FROM NhanVien n WHERE n.ghiChu = :ghiChu")})
 public class NhanVien implements Serializable {
 
-    @Column(name = "NgaySinh")
-    private String ngaySinh;
-    @Column(name = "NgayVaoDonVi")
-    private String ngayVaoDonVi;
-    @Column(name = "NgayCapCMND")
-    private String ngayCapCMND;
+    @Column(name = "GioiTinh")
+    private String gioiTinh;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,25 +60,28 @@ public class NhanVien implements Serializable {
     private Integer idNV;
     @Column(name = "TenNV")
     private String tenNV;
-    @Column(name = "GioiTinh")
-    private Boolean gioiTinh;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "NgaySinh")
+    private String ngaySinh;
+    @Column(name = "NgayVaoDonVi")
+    private String ngayVaoDonVi;
     @Column(name = "ChieuCao")
-    private Double chieuCao;
+    private String chieuCao;
     @Column(name = "CanNang")
-    private Double canNang;
+    private String canNang;
     @Column(name = "LoaiSucKhoe")
     private String loaiSucKhoe;
     @Column(name = "BenhLi")
     private String benhLi;
     @Column(name = "DT")
-    private Integer dt;
+    private String dt;
     @Column(name = "DTDD")
-    private Integer dtdd;
+    private String dtdd;
     @Column(name = "email")
     private String email;
     @Column(name = "CMND")
-    private Integer cmnd;
+    private String cmnd;
+    @Column(name = "NgayCapCMND")
+    private String ngayCapCMND;
     @Column(name = "NoiCapCMND")
     private String noiCapCMND;
     @Column(name = "NoiOHienTai")
@@ -124,6 +120,37 @@ public class NhanVien implements Serializable {
     public NhanVien() {
     }
 
+    public NhanVien(Integer idNV, String tenNV, String ngaySinh, String gioiTinh, String ngayVaoDonVi, String chieuCao, String canNang, String loaiSucKhoe, String benhLi, String dt, String dtdd, String email, String cmnd, String ngayCapCMND, String noiCapCMND, String noiOHienTai, String thuongTru, String noiSinh, String nguyenQuan, String nhanDang, String tinhTrangHonNhan, String ghiChu, DanToc idDT, Doi idDoi, NhomMau idNM, TonGiao idTG, Tpgd idTPGD, Tpxh idTPXH) {
+        this.idNV = idNV;
+        this.tenNV = tenNV;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.ngayVaoDonVi = ngayVaoDonVi;
+        this.chieuCao = chieuCao;
+        this.canNang = canNang;
+        this.loaiSucKhoe = loaiSucKhoe;
+        this.benhLi = benhLi;
+        this.dt = dt;
+        this.dtdd = dtdd;
+        this.email = email;
+        this.cmnd = cmnd;
+        this.ngayCapCMND = ngayCapCMND;
+        this.noiCapCMND = noiCapCMND;
+        this.noiOHienTai = noiOHienTai;
+        this.thuongTru = thuongTru;
+        this.noiSinh = noiSinh;
+        this.nguyenQuan = nguyenQuan;
+        this.nhanDang = nhanDang;
+        this.tinhTrangHonNhan = tinhTrangHonNhan;
+        this.ghiChu = ghiChu;
+        this.idDT = idDT;
+        this.idDoi = idDoi;
+        this.idNM = idNM;
+        this.idTG = idTG;
+        this.idTPGD = idTPGD;
+        this.idTPXH = idTPXH;
+    }
+
     public NhanVien(Integer idNV) {
         this.idNV = idNV;
     }
@@ -144,29 +171,36 @@ public class NhanVien implements Serializable {
         this.tenNV = tenNV;
     }
 
-
-    public Boolean getGioiTinh() {
-        return gioiTinh;
+    public String getNgaySinh() {
+        return ngaySinh;
     }
 
-    public void setGioiTinh(Boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
 
-    public Double getChieuCao() {
+    public String getNgayVaoDonVi() {
+        return ngayVaoDonVi;
+    }
+
+    public void setNgayVaoDonVi(String ngayVaoDonVi) {
+        this.ngayVaoDonVi = ngayVaoDonVi;
+    }
+
+    public String getChieuCao() {
         return chieuCao;
     }
 
-    public void setChieuCao(Double chieuCao) {
+    public void setChieuCao(String chieuCao) {
         this.chieuCao = chieuCao;
     }
 
-    public Double getCanNang() {
+    public String getCanNang() {
         return canNang;
     }
 
-    public void setCanNang(Double canNang) {
+    public void setCanNang(String canNang) {
         this.canNang = canNang;
     }
 
@@ -186,19 +220,19 @@ public class NhanVien implements Serializable {
         this.benhLi = benhLi;
     }
 
-    public Integer getDt() {
+    public String getDt() {
         return dt;
     }
 
-    public void setDt(Integer dt) {
+    public void setDt(String dt) {
         this.dt = dt;
     }
 
-    public Integer getDtdd() {
+    public String getDtdd() {
         return dtdd;
     }
 
-    public void setDtdd(Integer dtdd) {
+    public void setDtdd(String dtdd) {
         this.dtdd = dtdd;
     }
 
@@ -210,14 +244,21 @@ public class NhanVien implements Serializable {
         this.email = email;
     }
 
-    public Integer getCmnd() {
+    public String getCmnd() {
         return cmnd;
     }
 
-    public void setCmnd(Integer cmnd) {
+    public void setCmnd(String cmnd) {
         this.cmnd = cmnd;
     }
 
+    public String getNgayCapCMND() {
+        return ngayCapCMND;
+    }
+
+    public void setNgayCapCMND(String ngayCapCMND) {
+        this.ngayCapCMND = ngayCapCMND;
+    }
 
     public String getNoiCapCMND() {
         return noiCapCMND;
@@ -330,8 +371,6 @@ public class NhanVien implements Serializable {
     public void setIdTPXH(Tpxh idTPXH) {
         this.idTPXH = idTPXH;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -355,31 +394,15 @@ public class NhanVien implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.NhanVien[ idNV=" + idNV + " ]";
+        return "ims.dal.NhanVien[ idNV=" + idNV + " ]";
     }
 
-    public String getNgaySinh() {
-        return ngaySinh;
+    public String getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
-
-    public String getNgayVaoDonVi() {
-        return ngayVaoDonVi;
-    }
-
-    public void setNgayVaoDonVi(String ngayVaoDonVi) {
-        this.ngayVaoDonVi = ngayVaoDonVi;
-    }
-
-    public String getNgayCapCMND() {
-        return ngayCapCMND;
-    }
-
-    public void setNgayCapCMND(String ngayCapCMND) {
-        this.ngayCapCMND = ngayCapCMND;
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
     
 }

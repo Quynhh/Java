@@ -5,6 +5,7 @@
  */
 package ims.gui;
 
+import ims.bll.NhanVienBLL;
 import ims.dal.NhanVien;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -12,6 +13,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -24,9 +26,11 @@ import org.hibernate.cfg.Configuration;
  *
  * @author NAT
  */
-public class EmployeeList extends javax.swing.JFrame implements WindowListener {
-
-    private static SessionFactory factory;
+public class EmployeeList extends javax.swing.JFrame  {
+         List<NhanVien> data;
+    NhanVienBLL nhanVienBLL = new NhanVienBLL();
+    NewJFrame newGui;
+    
 
     /**
      * Creates new form EmployeeList
@@ -34,6 +38,25 @@ public class EmployeeList extends javax.swing.JFrame implements WindowListener {
     public EmployeeList() {
         initComponents();
         setInfoDialog();
+        
+        data = nhanVienBLL.findAll();
+        loadDataToTable(data);
+    }
+    
+    public void loadDataToTable(List<NhanVien> data) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int row = 0;
+        model.setRowCount(0);
+        for (int i = 0; i < data.size(); i++) {
+            model.addRow(new Object[0]);
+            model.setValueAt(data.get(i).getIdNV(), row, 0);
+            model.setValueAt(data.get(i).getTenNV(), row, 1);
+            model.setValueAt(data.get(i).getTenNV(), row, 2);
+            model.setValueAt(data.get(i).getNgaySinh(), row, 3);
+            model.setValueAt(data.get(i).getNoiSinh(), row, 4);
+            row++;
+        }
+        jTable1.setModel(model);
     }
 
     public void setInfoDialog() {
@@ -56,12 +79,10 @@ public class EmployeeList extends javax.swing.JFrame implements WindowListener {
         jToolBar1 = new javax.swing.JToolBar();
         btNew = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton2 = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        jButton3 = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        jButton4 = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JToolBar.Separator();
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -71,7 +92,7 @@ public class EmployeeList extends javax.swing.JFrame implements WindowListener {
 
         jToolBar1.setRollover(true);
 
-        btNew.setText("Làm mới");
+        btNew.setText("Nhập");
         btNew.setFocusable(false);
         btNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -83,26 +104,29 @@ public class EmployeeList extends javax.swing.JFrame implements WindowListener {
         jToolBar1.add(btNew);
         jToolBar1.add(jSeparator1);
 
-        jButton2.setText("Sửa");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        btnSua.setText("Sửa");
+        btnSua.setFocusable(false);
+        btnSua.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSua.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnSua);
         jToolBar1.add(jSeparator2);
 
-        jButton3.setText("Xóa");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
+        btnXoa.setText("Xóa");
+        btnXoa.setFocusable(false);
+        btnXoa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnXoa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnXoa);
         jToolBar1.add(jSeparator3);
-
-        jButton4.setText("In");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
-        jToolBar1.add(jSeparator4);
 
         jButton5.setText("Thoát");
         jButton5.setFocusable(false);
@@ -142,36 +166,53 @@ public class EmployeeList extends javax.swing.JFrame implements WindowListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewActionPerformed
-//        Employee emGui= new Employee();
-//        emGui.setVisible(true);
-        Session session = factory.openSession();
-        Transaction tx = null;
-        int row = 0;
-        try {
-            factory = new Configuration().configure().buildSessionFactory();
-            tx = session.beginTransaction();
-            List emps = session.createQuery("FROM NhanVien").list();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            for (Iterator iterator = emps.iterator(); iterator.hasNext();) {
-                NhanVien emp = (NhanVien) iterator.next();
-                model.addRow(new Object[0]);
-                model.setValueAt(emp.getIdNV(), row, 0);
-                model.setValueAt(emp.getTenNV(), row, 1);
-                model.setValueAt(emp.getNgaySinh(), row, 2);
-                model.setValueAt(emp.getNoiSinh(), row, 3);
-                row++;
+        new NewJFrame().setVisible(true);
+  
+    }//GEN-LAST:event_btNewActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        int i =   - 1;
+        
+        i = jTable1.getSelectedRow();
+        System.out.println("Employee i: " + i);
+        
+        String maNV = null;
+        if (i >= 0) {
+            maNV = jTable1.getValueAt(i, 0).toString();
+            int select = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn xóa nhân viện " + maNV);
+            if( select == 0) {
+                nhanVienBLL.deleteById(maNV);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.removeRow(i);
             }
-            tx.commit();
-        } catch (HibernateException ex) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            ex.printStackTrace();
-        } finally {
-            session.close();
+            
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn NV để xóa");
+            return;
+        }
+        
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        int i =  - 1;
+        
+        i = jTable1.getSelectedRow();
+        System.out.println("NhanVien i: " + i);
+        
+        String maNV = null;
+        if (i >= 0) {
+            maNV = jTable1.getValueAt(i, 0).toString();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn NV để chỉnh sửa");
+            return;
         }
 
-    }//GEN-LAST:event_btNewActionPerformed
+        NhanVien nhanVien = new NhanVien();
+        nhanVien = nhanVienBLL.findByID(maNV);
+        new NewJFrame(nhanVien).setVisible(true);
+    }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,72 +251,17 @@ public class EmployeeList extends javax.swing.JFrame implements WindowListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btNew;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
-    private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void windowOpened(WindowEvent e) {
-        Session session = factory.openSession();
-        Transaction tx = null;
-        int row = 0;
-        try {
-            factory = new Configuration().configure().buildSessionFactory();
-            tx = session.beginTransaction();
-            List emps = session.createQuery("FROM NhanVien").list();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            for (Iterator iterator = emps.iterator(); iterator.hasNext();) {
-                NhanVien emp = (NhanVien) iterator.next();
-                model.addRow(new Object[0]);
-                model.setValueAt(emp.getIdNV(), row, 0);
-                model.setValueAt(emp.getTenNV(), row, 1);
-                model.setValueAt(emp.getNgaySinh(), row, 2);
-                model.setValueAt(emp.getNoiSinh(), row, 3);
-                row++;
-            }
-            tx.commit();
-        } catch (HibernateException ex) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            ex.printStackTrace();
-        } finally {
-            session.close();
-        }
 
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-    }
 
 }

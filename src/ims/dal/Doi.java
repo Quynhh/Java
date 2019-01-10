@@ -5,16 +5,11 @@
  */
 package ims.dal;
 
-import ims.dal.Toto;
-import ims.dal.NhanVien;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -45,9 +40,8 @@ public class Doi implements Serializable {
     private Integer idDoi;
     @Column(name = "TenDoi")
     private String tenDoi;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDoi", fetch = FetchType.LAZY)
-//    private Collection<NhanVien> nhanVienCollection;
-    private List<NhanVien> nhanVienList;
+    @OneToMany(mappedBy = "idDoi")
+    private Collection<NhanVien> nhanVienCollection;
     @JoinColumn(name = "idTo", referencedColumnName = "idTo")
     @ManyToOne
     private Toto idTo;
@@ -76,19 +70,12 @@ public class Doi implements Serializable {
     }
 
     @XmlTransient
-//    public Collection<NhanVien> getNhanVienCollection() {
-//        return nhanVienCollection;
-//    }
-//
-//    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
-//        this.nhanVienCollection = nhanVienCollection;
-//    }
-        public List<NhanVien> getNhanVienList() {
-        return nhanVienList;
+    public Collection<NhanVien> getNhanVienCollection() {
+        return nhanVienCollection;
     }
 
-    public void setNhanVienList(List<NhanVien> nhanVienList) {
-        this.nhanVienList = nhanVienList;
+    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
+        this.nhanVienCollection = nhanVienCollection;
     }
 
     public Toto getIdTo() {
@@ -98,8 +85,6 @@ public class Doi implements Serializable {
     public void setIdTo(Toto idTo) {
         this.idTo = idTo;
     }
-    
-  
 
     @Override
     public int hashCode() {
@@ -123,7 +108,7 @@ public class Doi implements Serializable {
 
     @Override
     public String toString() {
-        return "ims.Doi[ idDoi=" + idDoi + " ]";
+        return "ims.dal.Doi[ idDoi=" + idDoi + " ]";
     }
     
 }

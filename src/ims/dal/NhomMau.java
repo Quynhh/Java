@@ -7,7 +7,6 @@ package ims.dal;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,8 +39,8 @@ public class NhomMau implements Serializable {
     @Column(name = "TenNhomMau")
     private String tenNhomMau;
     @OneToMany(mappedBy = "idNM")
-//    private Collection<NhanVien> nhanVienCollection;
-private List<NhanVien> nhanVienList;
+    private Collection<NhanVien> nhanVienCollection;
+
     public NhomMau() {
     }
 
@@ -66,19 +65,12 @@ private List<NhanVien> nhanVienList;
     }
 
     @XmlTransient
-//    public Collection<NhanVien> getNhanVienCollection() {
-//        return nhanVienCollection;
-//    }
-//
-//    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
-//        this.nhanVienCollection = nhanVienCollection;
-//    }
-        public List<NhanVien> getNhanVienList() {
-        return nhanVienList;
+    public Collection<NhanVien> getNhanVienCollection() {
+        return nhanVienCollection;
     }
 
-    public void setNhanVienList(List<NhanVien> nhanVienList) {
-        this.nhanVienList = nhanVienList;
+    public void setNhanVienCollection(Collection<NhanVien> nhanVienCollection) {
+        this.nhanVienCollection = nhanVienCollection;
     }
 
     @Override
@@ -103,7 +95,7 @@ private List<NhanVien> nhanVienList;
 
     @Override
     public String toString() {
-        return "ims.NhomMau[ idNM=" + idNM + " ]";
+        return "ims.dal.NhomMau[ idNM=" + idNM + " ]";
     }
     
 }

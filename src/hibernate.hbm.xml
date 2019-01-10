@@ -40,5 +40,10 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="ims.dal.NhanVien" table="NhanVien"/>
+  <class name="ims.dal.NhanVien" table="NhanVien">
+  <id name = "idNV" type = "int" column = "idNV">
+        <generator class="native"/>
+    </id>      
+    <property name = "email" column = "email" type = "string"/>    
+</class>
 </hibernate-mapping>
