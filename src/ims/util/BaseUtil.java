@@ -74,7 +74,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         entityManager.getTransaction().begin();
         String nameEntity = getNameClass(getClassMethod());
         System.out.println("NAME ENTITY SELECT: " + nameEntity);
-        String sql = "SELECT idDoi.Doi FROM Doi, NhanVien WHERE TenDoi = 'o' and Doi.idDoi = NhanVien.idDoi";
+        String sql = "SELECT o FROM " + nameEntity + " o WHERE o." + col.toString() + " = '" + data.toString() + "'";
 
         Query query = entityManager.createQuery(sql);
 
@@ -86,7 +86,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         entityManager.getTransaction().begin();
         String nameEntity = getNameClass(getClassMethod());
         System.out.println("NAME ENTITY SELECT: " + nameEntity);
-        String sql = "SELECT idDT.DanToc FROM DanToc, NhanVien WHERE TenDT = 'o' and DanToc.idDT = NhanVien.idDT";
+        String sql = "SELECT o FROM " + nameEntity + " o WHERE o." + col.toString() + " = '" + data.toString() + "'";
 
         Query query = entityManager.createQuery(sql);
 
@@ -98,7 +98,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         entityManager.getTransaction().begin();
         String nameEntity = getNameClass(getClassMethod());
         System.out.println("NAME ENTITY SELECT: " + nameEntity);
-        String sql = "SELECT idNM.NhomMau FROM NhomMau, NhanVien WHERE TenNhomMau = 'o' and NhomMau.idNM = NhanVien.idNM";
+        String sql = "SELECT o FROM " + nameEntity + " o WHERE o." + col.toString() + " = '" + data.toString() + "'";
 
         Query query = entityManager.createQuery(sql);
 
@@ -110,7 +110,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         entityManager.getTransaction().begin();
         String nameEntity = getNameClass(getClassMethod());
         System.out.println("NAME ENTITY SELECT: " + nameEntity);
-        String sql = "SELECT idTG.TonGiao FROM TonGiao, NhanVien WHERE TenTonGiao = 'o' and TonGiao.idTG = NhanVien.idTG";
+        String sql = "SELECT o FROM " + nameEntity + " o WHERE o." + col.toString() + " = '" + data.toString() + "'";
 
         Query query = entityManager.createQuery(sql);
 
@@ -122,7 +122,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         entityManager.getTransaction().begin();
         String nameEntity = getNameClass(getClassMethod());
         System.out.println("NAME ENTITY SELECT: " + nameEntity);
-        String sql = "SELECT idTPGD.TPGD FROM TPGD, NhanVien WHERE TenTPGD = 'o' and TPGD.idTPGD = NhanVien.idTPGD";
+        String sql = "SELECT o FROM " + nameEntity + " o WHERE o." + col.toString() + " = '" + data.toString() + "'";
 
         Query query = entityManager.createQuery(sql);
 
@@ -134,7 +134,7 @@ public class BaseUtil<T> implements AppUtil<Object, Object> {
         entityManager.getTransaction().begin();
         String nameEntity = getNameClass(getClassMethod());
         System.out.println("NAME ENTITY SELECT: " + nameEntity);
-        String sql = "SELECT idTPXH.TPXH FROM TPXH, NhanVien WHERE TenTPXH = 'o' and TPXH.idTPXH = NhanVien.idTPXH";
+        String sql = "SELECT o FROM " + nameEntity + " o WHERE o." + col.toString() + " = '" + data.toString() + "'";
 
         Query query = entityManager.createQuery(sql);
 
